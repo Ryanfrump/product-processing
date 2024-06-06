@@ -62,7 +62,10 @@ const processProducts = (products, discountCategory, discountRate) => {
         category: products[i].category,
         discountedTotalValue: products[i].price * products[i].quantity,
       });
-    } else if (products[i].category === discountCategory) {
+    } else if (
+      products[i].category === discountCategory &&
+      products[i].quantity > 0
+    ) {
       productList.push({
         name: products[i].name,
         category: products[i].category,
