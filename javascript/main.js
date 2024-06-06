@@ -53,6 +53,7 @@ const processProducts = (products, discountCategory, discountRate) => {
   // Your code goes here
   let productList = [];
   for (i = 0; i < products.length; i++) {
+    const quantityTimesPrice = products[i].price * products[i].quantity;
     if (
       products[i].quantity !== 0 &&
       products[i].category !== discountCategory
@@ -60,7 +61,7 @@ const processProducts = (products, discountCategory, discountRate) => {
       productList.push({
         name: products[i].name,
         category: products[i].category,
-        discountedTotalValue: products[i].price * products[i].quantity,
+        discountedTotalValue: quantityTimesPrice,
       });
     } else if (
       products[i].category === discountCategory &&
@@ -70,8 +71,7 @@ const processProducts = (products, discountCategory, discountRate) => {
         name: products[i].name,
         category: products[i].category,
         discountedTotalValue:
-          products[i].price * products[i].quantity -
-          products[i].price * products[i].quantity * discountRate,
+          quantityTimesPrice - quantityTimesPrice * discountRate,
       });
     }
   }
